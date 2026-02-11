@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS OMAKASE | Architect Pro v7.0 (Scroll Fixed)</title>
+    <title>Expert Mode | AWS OMAKASE</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -19,55 +19,62 @@
     <style>
         body {
             font-family: 'Pretendard', sans-serif;
-            background-color: #f3f4f6;
-            color: #1f2937;
+            background-color: #f2f3f3;
+            color: #16191f;
             overflow: hidden;
         }
 
-        /* 전체 레이아웃 (헤더 제외 높이 계산) */
+        /* AWS Utilities */
+        .aws-btn {
+            background-color: #ec7211;
+            color: #ffffff;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: 1px solid #ec7211;
+        }
+
+        .aws-btn:hover {
+            background-color: #eb5f07;
+            border-color: #dd5906;
+        }
+
+        /* 3-Column Layout: Global Nav | Controls | Main Canvas */
         .grid-layout {
             display: grid;
-            grid-template-columns: 450px 1fr;
-            height: calc(100vh - 64px);
+            grid-template-columns: 64px 450px 1fr;
+            height: calc(100vh - 56px);
         }
 
-        .border-aws {
-            border-color: #e5e7eb;
+        /* Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
 
-        /* 스크롤바 디자인 (강제 표시) */
-        ::-webkit-scrollbar {
-            width: 12px;
-            height: 12px;
-            display: block;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f2f3f3;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #f3f4f6;
-            border-left: 1px solid #e5e7eb;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d5dbdb;
+            border-radius: 4px;
         }
 
-        ::-webkit-scrollbar-thumb {
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #9ca3af;
-            border-radius: 6px;
-            border: 3px solid #f3f4f6;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6b7280;
-        }
-
-        /* 좌측 패널 스타일 */
+        /* Left Control Panel Styles */
         .option-group {
             margin-bottom: 24px;
             padding-bottom: 24px;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #d5dbdb;
         }
 
         .group-title {
             font-size: 11px;
             font-weight: 800;
-            color: #4b5563;
+            color: #545b64;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 12px;
@@ -78,9 +85,10 @@
 
         .option-card {
             background: #ffffff;
-            border: 1px solid #e5e7eb;
+            border: 1px solid #d5dbdb;
             padding: 16px;
-            border-radius: 8px;
+            border-radius: 4px;
+            /* AWS styling */
             margin-bottom: 8px;
             cursor: pointer;
             transition: all 0.2s;
@@ -93,18 +101,12 @@
 
         .option-card:hover {
             border-color: #ec7211;
-            background: #fff7ed;
         }
 
         .option-card.active {
-            background: #fff7ed;
+            background: #fff7ee;
             border: 2px solid #ec7211;
             box-shadow: 0 4px 6px -1px rgba(236, 114, 17, 0.1);
-        }
-
-        .option-card.active .check-icon {
-            opacity: 1;
-            transform: scale(1);
         }
 
         .check-icon {
@@ -124,13 +126,18 @@
             color: white;
         }
 
+        .option-card.active .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
         .input-light {
             width: 100%;
             background: #ffffff;
-            border: 1px solid #d1d5db;
-            color: #111827;
-            padding: 10px 12px;
-            border-radius: 6px;
+            border: 1px solid #d5dbdb;
+            color: #16191f;
+            padding: 8px 12px;
+            border-radius: 4px;
             font-size: 13px;
             outline: none;
             transition: 0.2s;
@@ -138,19 +145,19 @@
 
         .input-light:focus {
             border-color: #ec7211;
-            ring: 2px solid #ffedd5;
+            box-shadow: 0 0 0 1px #ec7211;
         }
 
         .input-error {
-            border-color: #ef4444 !important;
+            border-color: #d13212 !important;
         }
 
         .err-msg {
-            color: #ef4444;
+            color: #d13212;
             font-size: 11px;
             margin-top: 4px;
             display: none;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .slider-container {
@@ -166,17 +173,17 @@
         input[type=range] {
             width: 100%;
             accent-color: #ec7211;
-            height: 6px;
-            background: #e5e7eb;
-            border-radius: 3px;
+            height: 4px;
+            background: #d5dbdb;
+            border-radius: 2px;
             cursor: pointer;
         }
 
-        /* 탭 헤더 */
+        /* Tabs */
         .tab-header {
             display: flex;
             background: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #d5dbdb;
             flex-shrink: 0;
         }
 
@@ -184,21 +191,21 @@
             padding: 14px 20px;
             font-size: 12px;
             font-weight: 700;
-            color: #6b7280;
+            color: #545b64;
             cursor: pointer;
-            border-right: 1px solid #f3f4f6;
+            border-right: 1px solid #f2f3f3;
             border-bottom: 3px solid transparent;
             transition: 0.2s;
             display: flex;
             align-items: center;
             gap: 8px;
             white-space: nowrap;
-            background: #f9fafb;
+            background: #fff;
         }
 
         .tab-btn:hover {
-            background: #f3f4f6;
-            color: #111827;
+            color: #ec7211;
+            background: #fafafa;
         }
 
         .tab-btn.active {
@@ -207,10 +214,10 @@
             background: #ffffff;
         }
 
-        /* 토폴로지 스타일 */
+        /* Topology */
         .topo-container {
             background: #ffffff;
-            border: 1px solid #e5e7eb;
+            border: 1px solid #d5dbdb;
             padding: 24px;
             border-radius: 8px;
             position: relative;
@@ -232,7 +239,7 @@
             background: #ffffff;
             padding: 0 8px;
             font-size: 11px;
-            color: #4b5563;
+            color: #545b64;
             font-weight: 800;
         }
 
@@ -288,7 +295,7 @@
 
         .topo-subnet {
             background: #ffffff;
-            border: 1px solid #e5e7eb;
+            border: 1px solid #d5dbdb;
             padding: 10px;
             border-radius: 6px;
             margin-bottom: 8px;
@@ -296,7 +303,7 @@
             align-items: center;
             gap: 10px;
             font-size: 11px;
-            color: #374151;
+            color: #16191f;
             font-weight: 600;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         }
@@ -310,15 +317,12 @@
             border-radius: 4px;
         }
 
-        /* ★★★ [SCROLL FIX: ABSOLUTE POSITIONING] ★★★ */
-        /* 이 방식은 부모 크기를 무시하고 화면에 꽉 차게 만든 뒤 스크롤을 생성합니다. 실패할 수 없습니다. */
+        /* Content Area & Scroll */
         .content-area-fixed {
             position: relative;
-            /* 기준점 */
             flex: 1;
-            background: #f9fafb;
+            background: #f2f3f3;
             overflow: hidden;
-            /* 내부 스크롤을 위해 숨김 */
         }
 
         .scroll-view-absolute {
@@ -328,7 +332,6 @@
             right: 0;
             bottom: 0;
             overflow-y: auto;
-            /* 스크롤 활성화 */
             padding: 24px;
         }
 
@@ -348,62 +351,74 @@
     </style>
 </head>
 
-<body class="flex flex-col h-screen bg-gray-50">
+<body class="flex flex-col h-screen">
 
+    <!-- Style A Header -->
     <header
-        class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shrink-0 z-50 shadow-sm">
-        <div class="flex items-center gap-4">
-            <div class="flex items-center gap-2 text-gray-900 font-black text-xl tracking-tight">
-                <div class="bg-[#ec7211] text-white p-1.5 rounded"><i data-lucide="cloud" class="w-6 h-6"></i></div>
-                AWS <span class="text-[#ec7211]">OMAKASE</span> PRO
-            </div>
-            <span
-                class="px-2 py-0.5 roundedbg-gray-100 border border-gray-300 text-[10px] text-gray-600 font-mono font-bold">v7.0.0
-                Scroll Fixed</span>
+        class="bg-[#232f3e] text-white px-5 py-3 flex justify-between items-center shadow-md z-50 shrink-0 h-[56px]">
+        <div class="flex items-center gap-3">
+            <button onclick="location.href='/'" class="hover:text-[#ec7211] transition" title="Go Home">
+                <i data-lucide="box" class="w-6 h-6 text-[#ec7211]"></i>
+            </button>
+            <h1 class="text-base font-bold tracking-tight">Management Console <span class="text-[#ec7211] font-normal">|
+                    Expert Mode</span></h1>
         </div>
         <div class="flex items-center gap-8 text-sm">
             <div class="flex flex-col items-end">
-                <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Target Region</span>
+                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Target Region</span>
                 <select id="region_select" onchange="refreshEngine()"
-                    class="bg-transparent text-gray-900 font-bold outline-none cursor-pointer hover:text-[#ec7211] transition">
-                    <option value="ap-northeast-2">ap-northeast-2 (Seoul)</option>
-                    <option value="us-east-1">us-east-1 (N. Virginia)</option>
-                    <option value="us-west-2">us-west-2 (Oregon)</option>
-                    <option value="ap-northeast-1">ap-northeast-1 (Tokyo)</option>
-                    <option value="eu-central-1">eu-central-1 (Frankfurt)</option>
-                    <option value="eu-west-2">eu-west-2 (London)</option>
-                    <option value="ap-southeast-1">ap-southeast-1 (Singapore)</option>
-                    <option value="ap-southeast-2">ap-southeast-2 (Sydney)</option>
+                    class="bg-transparent text-white font-bold outline-none cursor-pointer hover:text-[#ec7211] transition text-xs">
+                    <option value="ap-northeast-2" class="text-black">ap-northeast-2 (Seoul)</option>
+                    <option value="us-east-1" class="text-black">us-east-1 (N. Virginia)</option>
+                    <option value="us-west-2" class="text-black">us-west-2 (Oregon)</option>
+                    <option value="ap-northeast-1" class="text-black">ap-northeast-1 (Tokyo)</option>
+                    <option value="eu-central-1" class="text-black">eu-central-1 (Frankfurt)</option>
                 </select>
             </div>
-            <div class="h-8 w-px bg-gray-200"></div>
+            <div class="h-8 w-px bg-gray-600"></div>
             <div class="flex flex-col items-end">
-                <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Est. Monthly Cost</span>
-                <span class="font-bold text-green-600 text-lg font-mono" id="header-cost">$ 0.00</span>
+                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Est. Cost</span>
+                <span class="font-bold text-green-400 text-base font-mono" id="header-cost">$ 0.00</span>
             </div>
             <button onclick="deploy()"
-                class="bg-[#ec7211] hover:bg-[#c25e00] text-white px-6 py-2.5 rounded shadow-lg flex items-center gap-2 transition hover:scale-105 font-bold">
+                class="aws-btn px-6 py-1.5 rounded shadow-lg flex items-center gap-2 transition hover:scale-105 font-bold text-sm">
                 <i data-lucide="rocket" class="w-4 h-4"></i> Provision Stack
             </button>
         </div>
     </header>
 
     <div class="grid-layout">
+        <!-- 1. Global Sidebar (Style A) -->
+        <nav class="bg-[#232f3e] flex flex-col items-center py-4 gap-6 border-t border-gray-700">
+            <i onclick="location.href='/'" data-lucide="home"
+                class="w-5 h-5 text-gray-400 hover:text-[#ec7211] cursor-pointer hover:scale-110 transition"
+                title="Home"></i>
+            <i onclick="location.href='/monitoring'" data-lucide="activity"
+                class="w-5 h-5 text-gray-400 hover:text-[#ec7211] cursor-pointer hover:scale-110 transition"
+                title="Monitoring"></i>
+            <i onclick="location.href='/history'" data-lucide="list"
+                class="w-5 h-5 text-gray-400 hover:text-[#ec7211] cursor-pointer hover:scale-110 transition"
+                title="History"></i>
+            <i data-lucide="settings"
+                class="w-5 h-5 text-gray-400 hover:text-[#ec7211] cursor-pointer hover:scale-110 transition mt-auto mb-4"
+                title="Settings"></i>
+        </nav>
 
-        <div class="bg-white border-r border-gray-200 overflow-y-auto p-6 custom-scrollbar">
+        <!-- 2. Control Panel (Local Nav) -->
+        <div class="bg-white border-r border-[#d5dbdb] overflow-y-auto p-6 custom-scrollbar">
             <div class="option-group">
-                <div class="group-title"><i data-lucide="tag" class="w-4 h-4 text-gray-400"></i> 1. Resource Identity
+                <div class="group-title"><i data-lucide="tag" class="w-4 h-4 text-[#ec7211]"></i> 1. Resource Identity
                 </div>
                 <div class="space-y-4">
                     <div>
-                        <label class="text-[11px] font-bold text-gray-500 mb-1 block">SERVICE IDENTIFIER</label>
+                        <label class="text-[11px] font-bold text-[#545b64] mb-1 block">SERVICE IDENTIFIER</label>
                         <input type="text" id="svc_name" onkeyup="validateAndRefresh()"
                             placeholder="e.g. core-payment-api" class="input-light">
                         <p id="err_name" class="err-msg">Lowercase alphanumeric only.</p>
                     </div>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label class="text-[11px] font-bold text-gray-500 mb-1 block">ENVIRONMENT</label>
+                            <label class="text-[11px] font-bold text-[#545b64] mb-1 block">ENVIRONMENT</label>
                             <select id="env_tag" onchange="refreshEngine()" class="input-light cursor-pointer">
                                 <option value="dev">Development</option>
                                 <option value="stg">Staging</option>
@@ -411,7 +426,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-[11px] font-bold text-gray-500 mb-1 block">OWNER</label>
+                            <label class="text-[11px] font-bold text-[#545b64] mb-1 block">OWNER</label>
                             <input type="text" value="DevOps-Team" class="input-light bg-gray-50 text-gray-500"
                                 readonly>
                         </div>
@@ -420,17 +435,18 @@
             </div>
 
             <div class="option-group">
-                <div class="group-title"><i data-lucide="cpu" class="w-4 h-4 text-gray-400"></i> 2. Compute Engine</div>
+                <div class="group-title"><i data-lucide="cpu" class="w-4 h-4 text-[#ec7211]"></i> 2. Compute Engine
+                </div>
                 <div class="space-y-3">
                     <div class="option-card active" onclick="setInstanceTier('t3.micro', 25, this)">
                         <div class="bg-gray-100 p-2 rounded"><i data-lucide="coffee" class="w-5 h-5 text-gray-500"></i>
                         </div>
                         <div class="flex-1">
-                            <div class="flex justify-between"><span class="text-sm font-bold text-gray-900">Starter
+                            <div class="flex justify-between"><span class="text-sm font-bold text-[#16191f]">Starter
                                     (t3.micro)</span> <span
                                     class="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">$25</span>
                             </div>
-                            <div class="text-[11px] text-gray-500">2vCPU, 1GB RAM</div>
+                            <div class="text-[11px] text-[#545b64]">2vCPU, 1GB RAM</div>
                         </div>
                         <div class="check-icon"><i data-lucide="check" class="w-3 h-3 text-white"></i></div>
                     </div>
@@ -438,11 +454,11 @@
                         <div class="bg-blue-50 p-2 rounded"><i data-lucide="server" class="w-5 h-5 text-blue-500"></i>
                         </div>
                         <div class="flex-1">
-                            <div class="flex justify-between"><span class="text-sm font-bold text-gray-900">Standard
+                            <div class="flex justify-between"><span class="text-sm font-bold text-[#16191f]">Standard
                                     (m5.large)</span> <span
                                     class="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">$90</span>
                             </div>
-                            <div class="text-[11px] text-gray-500">2vCPU, 8GB RAM</div>
+                            <div class="text-[11px] text-[#545b64]">2vCPU, 8GB RAM</div>
                         </div>
                         <div class="check-icon"><i data-lucide="check" class="w-3 h-3 text-white"></i></div>
                     </div>
@@ -450,17 +466,17 @@
                         <div class="bg-orange-50 p-2 rounded"><i data-lucide="zap" class="w-5 h-5 text-[#ec7211]"></i>
                         </div>
                         <div class="flex-1">
-                            <div class="flex justify-between"><span class="text-sm font-bold text-gray-900">Performance
+                            <div class="flex justify-between"><span class="text-sm font-bold text-[#16191f]">Performance
                                     (c5.xlarge)</span> <span
                                     class="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded">$170</span>
                             </div>
-                            <div class="text-[11px] text-gray-500">4vCPU, 8GB RAM</div>
+                            <div class="text-[11px] text-[#545b64]">4vCPU, 8GB RAM</div>
                         </div>
                         <div class="check-icon"><i data-lucide="check" class="w-3 h-3 text-white"></i></div>
                     </div>
                 </div>
                 <div class="slider-container mt-6">
-                    <label class="text-[11px] font-bold text-gray-500 mb-2 flex justify-between">
+                    <label class="text-[11px] font-bold text-[#545b64] mb-2 flex justify-between">
                         <span>DESIRED CAPACITY</span>
                         <span id="node_val" class="text-[#ec7211]">2 Nodes</span>
                     </label>
@@ -470,25 +486,25 @@
             </div>
 
             <div class="option-group">
-                <div class="group-title"><i data-lucide="database" class="w-4 h-4 text-gray-400"></i> 3. Persistence
+                <div class="group-title"><i data-lucide="database" class="w-4 h-4 text-[#ec7211]"></i> 3. Persistence
                     Layer</div>
                 <select id="db_engine" onchange="refreshEngine()" class="input-light mb-4 cursor-pointer">
                     <option value="mysql">Amazon RDS for MySQL 8.0</option>
                     <option value="postgres">Amazon RDS for PostgreSQL 15</option>
                     <option value="aurora">Amazon Aurora (Serverless v2)</option>
                 </select>
-                <div class="flex items-center gap-3 mb-3 p-3 bg-gray-50 rounded border border-gray-200">
+                <div class="flex items-center gap-3 mb-3 p-3 bg-white rounded border border-[#d5dbdb]">
                     <input type="checkbox" id="chk_multiaz" checked onchange="refreshEngine()"
                         class="w-4 h-4 accent-[#ec7211] cursor-pointer">
                     <span class="text-xs font-bold text-gray-700">Multi-AZ Deployment (HA)</span>
                 </div>
-                <div class="flex items-center gap-3 mb-4 p-3 bg-gray-50 rounded border border-gray-200">
+                <div class="flex items-center gap-3 mb-4 p-3 bg-white rounded border border-[#d5dbdb]">
                     <input type="checkbox" id="chk_redis" onchange="refreshEngine()"
                         class="w-4 h-4 accent-[#ec7211] cursor-pointer">
                     <span class="text-xs font-bold text-gray-700">Add ElastiCache Redis</span>
                 </div>
                 <div class="slider-container">
-                    <label class="text-[11px] font-bold text-gray-500 mb-2 flex justify-between">
+                    <label class="text-[11px] font-bold text-[#545b64] mb-2 flex justify-between">
                         <span>STORAGE SIZE</span>
                         <span id="db_size_val" class="text-[#ec7211]">50 GB</span>
                     </label>
@@ -498,18 +514,18 @@
             </div>
 
             <div class="option-group border-none">
-                <div class="group-title"><i data-lucide="shield" class="w-4 h-4 text-gray-400"></i> 4. Network &
+                <div class="group-title"><i data-lucide="shield" class="w-4 h-4 text-[#ec7211]"></i> 4. Network &
                     Security</div>
                 <div class="space-y-3">
                     <div
-                        class="flex items-center justify-between p-3 rounded bg-white border border-gray-200 hover:border-gray-400 transition">
+                        class="flex items-center justify-between p-3 rounded bg-white border border-[#d5dbdb] hover:border-[#ec7211] transition">
                         <span class="text-xs font-bold text-gray-700 flex items-center gap-2"><i
                                 data-lucide="shield-check" class="w-4 h-4 text-green-500"></i> Enable AWS WAF</span>
                         <input type="checkbox" id="chk_waf" onchange="refreshEngine()"
                             class="w-4 h-4 accent-[#ec7211] cursor-pointer">
                     </div>
                     <div
-                        class="flex items-center justify-between p-3 rounded bg-white border border-gray-200 hover:border-gray-400 transition">
+                        class="flex items-center justify-between p-3 rounded bg-white border border-[#d5dbdb] hover:border-[#ec7211] transition">
                         <span class="text-xs font-bold text-gray-700 flex items-center gap-2"><i data-lucide="globe"
                                 class="w-4 h-4 text-blue-500"></i> CloudFront CDN</span>
                         <input type="checkbox" id="chk_cdn" onchange="refreshEngine()"
@@ -519,7 +535,8 @@
             </div>
         </div>
 
-        <div class="bg-gray-50 flex flex-col min-w-0 h-full relative">
+        <!-- 3. Main Content (Canvas) -->
+        <div class="bg-[#f0f2f3] flex flex-col min-w-0 h-full relative">
 
             <div class="tab-header shrink-0 z-10 relative">
                 <div class="tab-btn active" onclick="switchTab('topology')"><i data-lucide="map" class="w-4 h-4"></i>
@@ -536,7 +553,7 @@
 
                 <div id="tab-topology" class="scroll-view-absolute">
                     <div class="topo-container">
-                        <h3 class="text-xs font-bold text-gray-500 uppercase mb-6 flex justify-between items-center">
+                        <h3 class="text-xs font-bold text-[#545b64] uppercase mb-6 flex justify-between items-center">
                             <span>Target Architecture Diagram</span>
                             <span class="text-[#ec7211] flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-full"><i
                                     data-lucide="refresh-cw" class="w-3 h-3"></i> Live Sync</span>
@@ -547,7 +564,7 @@
                                     class="w-12 h-12 bg-white border-2 border-[#ec7211] rounded-full flex items-center justify-center shadow-sm">
                                     <i data-lucide="globe" class="w-6 h-6 text-[#ec7211]"></i>
                                 </div>
-                                <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wide">Internet
+                                <span class="text-[10px] font-bold text-[#545b64] uppercase tracking-wide">Internet
                                     Gateway</span>
                             </div>
                         </div>
@@ -561,18 +578,18 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-4 gap-4 mt-6">
-                        <div class="p-4 bg-white border border-gray-200 rounded-lg flex flex-col gap-1 shadow-sm"><span
+                        <div class="p-4 bg-white border border-[#d5dbdb] rounded-lg flex flex-col gap-1 shadow-sm"><span
                                 class="text-[10px] font-bold text-gray-400 uppercase">Encryption</span><span
                                 class="text-sm font-bold text-green-600 flex items-center gap-1"><i
                                     data-lucide="check-circle" class="w-4 h-4"></i> KMS Enforced</span></div>
-                        <div class="p-4 bg-white border border-gray-200 rounded-lg flex flex-col gap-1 shadow-sm"><span
+                        <div class="p-4 bg-white border border-[#d5dbdb] rounded-lg flex flex-col gap-1 shadow-sm"><span
                                 class="text-[10px] font-bold text-gray-400 uppercase">Public Access</span><span
                                 class="text-sm font-bold text-green-600 flex items-center gap-1"><i data-lucide="lock"
                                     class="w-4 h-4"></i> Blocked</span></div>
-                        <div class="p-4 bg-white border border-gray-200 rounded-lg flex flex-col gap-1 shadow-sm"><span
+                        <div class="p-4 bg-white border border-[#d5dbdb] rounded-lg flex flex-col gap-1 shadow-sm"><span
                                 class="text-[10px] font-bold text-gray-400 uppercase">Availability</span><span
                                 class="text-sm font-bold" id="stat-ha">Checking...</span></div>
-                        <div class="p-4 bg-white border border-gray-200 rounded-lg flex flex-col gap-1 shadow-sm"><span
+                        <div class="p-4 bg-white border border-[#d5dbdb] rounded-lg flex flex-col gap-1 shadow-sm"><span
                                 class="text-[10px] font-bold text-gray-400 uppercase">Backup Policy</span><span
                                 class="text-sm font-bold text-blue-600">Daily Snapshots</span></div>
                     </div>

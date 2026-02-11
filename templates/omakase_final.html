@@ -318,6 +318,28 @@
                 onclick="location.reload()">
                 <i data-lucide="box" class="text-[#ff9900]"></i> AWS Solution Consoler
             </div>
+
+            <!-- GNB Step Indicator -->
+            <div class="hidden md:flex items-center gap-2 text-sm absolute left-1/2 transform -translate-x-1/2">
+                <div class="flex items-center gap-2 px-3 py-1 text-gray-400 font-medium">
+                    <span
+                        class="w-5 h-5 rounded-full border border-gray-500 flex items-center justify-center text-xs">1</span>
+                    <span>Select Infra</span>
+                </div>
+                <div class="w-8 h-px bg-gray-600"></div>
+                <div class="flex items-center gap-2 px-3 py-1 bg-[#ec7211] rounded-full font-bold text-white shadow-sm">
+                    <span
+                        class="w-5 h-5 rounded-full bg-white text-[#ec7211] flex items-center justify-center text-xs">2</span>
+                    <span>Configure & Provision</span>
+                </div>
+                <div class="w-8 h-px bg-gray-600"></div>
+                <div class="flex items-center gap-2 px-3 py-1 text-gray-400 font-medium">
+                    <span
+                        class="w-5 h-5 rounded-full border border-gray-500 flex items-center justify-center text-xs">3</span>
+                    <span>Operations</span>
+                </div>
+            </div>
+
             <div class="flex gap-6 items-center">
                 <button onclick="openLoginModal()"
                     class="aws-btn px-6 py-1.5 rounded text-sm shadow hover:shadow-lg">Console 로그인</button>
